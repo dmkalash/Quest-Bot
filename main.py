@@ -8,7 +8,7 @@ import handlers
 import fill_script
 
 if __name__ == '__main__':
-    config.database.connect()
+    #config.database.connect()
     if config.MODE == config.OFFLINE:
         t = Timer(config.CHECKER_TIME, check_time)
         t.start()
