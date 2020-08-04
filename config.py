@@ -23,10 +23,12 @@ if 'HEROKU' in os.environ:
         host=DATABASE.get('host'),
         port=DATABASE.get('port')
     )
+    print('Postgres database created')
 else:
     DEBUG = True
     DATABASE = 'quest.db'
     database = SqliteDatabase(DATABASE)
+    print('SQLite database created')
 
 # Bot token
 token = '1334067341:AAHlRSNcBd5HqbIzCt9Y-o_Lbwf_k_ZZsPU'
