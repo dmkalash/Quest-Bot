@@ -1,0 +1,11 @@
+pyTelegramBotAPI==3.6.7
+peewee==3.13.3
+appdirs==1.4.3
+certifi==2020.4.5.1
+chardet==3.0.4
+distlib==0.3.0
+filelock==3.0.12
+idna==2.9
+requests==2.23.0
+six==1.14.0
+urllib3==1.25.9
