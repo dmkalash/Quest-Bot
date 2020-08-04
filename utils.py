@@ -22,6 +22,7 @@ def get_msg(alias):
 
 @exception_guard
 def create_tables():
+    database.connect()
     with database:
         database.create_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
         return SUCCESS
