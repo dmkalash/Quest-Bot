@@ -53,7 +53,6 @@ def hello(message):
 @exception_guard
 @sudo
 @online_mode
-@not_finished
 def pinned(message):
     bot.send_message(message.chat.id, get_msg(MSG_PINNED))
 
@@ -109,9 +108,12 @@ def sos(message):
 @exception_guard
 def team(message):
     team = view.team.get_team(message.chat.id)
-    msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}".format(
-        team.name, team.participants, team.on_score + team.off_score)
-    bot.send_message(message.chat.id, msg)
+    if team == ERROR:
+        bot.message_handler(message.chat.id, ERROR)
+    else:
+        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}".format(
+            team.name, team.participants, team.on_score + team.off_score)
+        bot.send_message(message.chat.id, msg)
 
 @bot.message_handler(commands=["reg"])
 @exception_guard
