@@ -2,7 +2,7 @@
 
 import view
 from exception_guard import exception_guard
-from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File, database
+from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
 from msg import messages
 from config import *
 

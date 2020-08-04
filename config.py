@@ -1,17 +1,42 @@
 # -*- coding: utf-8 -*-
+from peewee import *
+import urllib.parse as urlparse
+import os
+
+# Database config
+if 'HEROKU' in os.environ:
+    DEBUG = False
+    urlparse.uses_netloc.append('postgres')
+    url = urlparse.urlparse(os.environ['DATABASE_URL'])
+    DATABASE = {
+     'engine': 'peewee.PostgresqlDatabase',
+     'name': url.path[1:],
+     'user': url.username,
+     'password': url.password,
+     'host': url.hostname,
+     'port': url.port,
+    }
+    database = PostgresqlDatabase(
+        DATABASE.get('name'),
+        user=DATABASE.get('user'),
+        password=DATABASE.get('password'),
+        host=DATABASE.get('host'),
+        port=DATABASE.get('port')
+    )
+else:
+    DEBUG = True
+    DATABASE = 'quest.db'
+    database = SqliteDatabase(DATABASE)
 
 # Bot token
 token = '1334067341:AAHlRSNcBd5HqbIzCt9Y-o_Lbwf_k_ZZsPU'
-
-# Database filename
-DATABASE = 'quest.db'
 
 # Quest Part
 ONLINE = 1
 OFFLINE = 2
 
 # Mode configuration
-MODE = OFFLINE
+MODE = ONLINE
 
 # fill-data paths
 ON_POINT_PATH = 'data/on_point.txt'

@@ -3,8 +3,6 @@
 from peewee import *
 from config import *
 
-database = SqliteDatabase(DATABASE)
-
 class BaseModel(Model):
     class Meta:
         database = database
