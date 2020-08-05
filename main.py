@@ -11,32 +11,28 @@ from flask import Flask, request
 import logging
 import telebot
 
-if __name__ == '__main__':
-    if config.MODE == config.OFFLINE:
-        t = Timer(config.CHECKER_TIME, check_time)
-        t.start()
+if config.MODE == config.OFFLINE:
+    t = Timer(config.CHECKER_TIME, check_time)
+    t.start()
 
-    if "HEROKU" in list(os.environ.keys()):
-        logger = telebot.logger
-        telebot.logger.setLevel(logging.INFO)
+if "HEROKU" in list(os.environ.keys()):
+    logger = telebot.logger
+    telebot.logger.setLevel(logging.INFO)
 
-        server = Flask(__name__)
+    server = Flask(__name__)
 
-        @server.route('/' + config.token, methods=['POST'])
-        def getMessage():
-            bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-            return "!", 200
+    @server.route('/' + config.token, methods=['POST'])
+    def getMessage():
+        bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+        return "!", 200
 
-        @server.route("/")
-        def webhook():
-            bot.remove_webhook()
-            bot.set_webhook(url="https://vmkquest.herokuapp.com" + config.token)
-            return "?", 200
-
-        server.debug = True
-        server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000))) # мб || os.PORT
-    else:
+    @server.route("/")
+    def webhook():
         bot.remove_webhook()
-        bot.polling(none_stop=True)
+        bot.set_webhook(url="https://vmkquest.herokuapp.com/" + config.token)
+        return "?", 200
 
-    # bot.infinity_polling()
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+else:
+    bot.remove_webhook()
+    bot.polling(none_stop=True)
