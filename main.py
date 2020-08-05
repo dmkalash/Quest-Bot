@@ -10,7 +10,7 @@ if __name__ == "__main__":
     logger = logging.getLogger('vmquest')
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     logger.setLevel(logging.DEBUG)
-    #config.database = config.db_init()
+    config.database = config.db_init()
     config.database.connect()
 
     from timer import check_time
