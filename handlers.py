@@ -8,7 +8,8 @@ from bot import bot
 from config import *
 
 ##### Decorators
-
+# TODO: сделать команду выключения ответок бота
+# TODO: сделать команду удаления базы данных
 def online_mode(func):
     def wrapper(message):
         if MODE == ONLINE:
@@ -42,6 +43,14 @@ def sudo(func):
     return wrapper
 
 ##### Handlers
+
+@bot.message_handler(commands=["change_mode"])
+@exception_guard
+@sudo
+def change_mode(message):
+    global MODE
+    MODE = not MODE
+    bot.send_message(message.chat.id, SUCCESS)
 
 @bot.message_handler(commands=["fill"])
 @exception_guard

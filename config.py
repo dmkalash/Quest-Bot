@@ -35,8 +35,8 @@ database = db_init()
 token = '1334067341:AAHlRSNcBd5HqbIzCt9Y-o_Lbwf_k_ZZsPU'
 
 # Quest Part
-ONLINE = 1
-OFFLINE = 2
+ONLINE = 0
+OFFLINE = 1
 
 # Mode configuration
 MODE = ONLINE
