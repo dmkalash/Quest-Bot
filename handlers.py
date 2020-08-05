@@ -44,14 +44,6 @@ def sudo(func):
 
 ##### Handlers
 
-@bot.message_handler(commands=["change_mode"])
-@exception_guard
-@sudo
-def change_mode(message):
-    global MODE
-    MODE = not MODE
-    bot.send_message(message.chat.id, SUCCESS + '\nnew mode: {}'.format(MODE))
-
 @bot.message_handler(commands=["fill"])
 @exception_guard
 @sudo

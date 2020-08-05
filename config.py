@@ -39,7 +39,7 @@ ONLINE = 0
 OFFLINE = 1
 
 # Mode configuration
-MODE = ONLINE
+MODE = OFFLINE
 
 # data filling configuration
 NEED_TO_FILL_DB = True
