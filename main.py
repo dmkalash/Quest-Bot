@@ -2,6 +2,8 @@
 
 from bot import bot
 from threading import Timer
+
+from config import db_init
 from timer import check_time
 import config
 import logging
@@ -23,3 +25,4 @@ if __name__ == "__main__":
         t.start()
     bot.infinity_polling()
 
+database = db_init()

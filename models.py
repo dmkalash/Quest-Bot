@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from peewee import *
 from config import *
+from main import database
+
 
 class BaseModel(Model):
     class Meta:

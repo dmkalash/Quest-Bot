@@ -5,6 +5,7 @@ from exception_guard import exception_guard
 from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
 from msg import messages
 from config import *
+from main import database
 
 @exception_guard
 def read_data_line(fin):
