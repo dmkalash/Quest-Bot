@@ -5,7 +5,6 @@ from threading import Timer
 from timer import check_time
 import config
 import handlers
-import fill_script
 
 import os
 from flask import Flask, request
