@@ -4,30 +4,33 @@ import urllib.parse as urlparse
 import os
 
 # Database config
-if 'HEROKU' in os.environ:
-    urlparse.uses_netloc.append('postgres')
-    url = urlparse.urlparse(os.environ['DATABASE_URL'])
-    DATABASE = {
-     'engine': 'peewee.PostgresqlDatabase',
-     'name': url.path[1:],
-     'user': url.username,
-     'password': url.password,
-     'host': url.hostname,
-     'port': url.port,
-    }
-    database = PostgresqlDatabase(
-        DATABASE.get('name'),
-        user=DATABASE.get('user'),
-        password=DATABASE.get('password'),
-        host=DATABASE.get('host'),
-        port=DATABASE.get('port')
-    )
-    print('Postgres database created')
-else:
-    DEBUG = True
-    DATABASE = 'quest.db'
-    database = SqliteDatabase(DATABASE)
-    print('SQLite database created')
+def db_init():
+    if 'HEROKU' in os.environ:
+        urlparse.uses_netloc.append('postgres')
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+        DATABASE = {
+         'engine': 'peewee.PostgresqlDatabase',
+         'name': url.path[1:],
+         'user': url.username,
+         'password': url.password,
+         'host': url.hostname,
+         'port': url.port,
+        }
+        database = PostgresqlDatabase(
+            DATABASE.get('name'),
+            user=DATABASE.get('user'),
+            password=DATABASE.get('password'),
+            host=DATABASE.get('host'),
+            port=DATABASE.get('port')
+        )
+        print('Postgres database created')
+    else:
+        DATABASE = 'quest.db'
+        database = SqliteDatabase(DATABASE)
+        print('SQLite database created')
+    database.connect()
+
+db_init()
 
 # Bot token
 token = '1334067341:AAHlRSNcBd5HqbIzCt9Y-o_Lbwf_k_ZZsPU'

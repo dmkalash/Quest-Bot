@@ -1,3 +1,4 @@
+pip==20.2.1
 pyTelegramBotAPI==3.6.7
 peewee==3.13.3
 appdirs==1.4.3
@@ -10,3 +11,9 @@ requests==2.23.0
 six==1.14.0
 urllib3==1.25.9
 py-postgresql==1.2.1
+PySocks==1.6.8
+future==0.16.0
+gunicorn==19.9.0
+python-telegram-bot==10.1.0
+setuptools==39.1.0
+psycopg2==2.7.5
