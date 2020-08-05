@@ -50,7 +50,7 @@ def sudo(func):
 def change_mode(message):
     global MODE
     MODE = not MODE
-    bot.send_message(message.chat.id, SUCCESS)
+    bot.send_message(message.chat.id, SUCCESS + '\nnew mode: {}'.format(MODE))
 
 @bot.message_handler(commands=["fill"])
 @exception_guard
@@ -128,8 +128,8 @@ def team(message):
     if team == ERROR:
         bot.message_handler(message.chat.id, ERROR)
     else:
-        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}".format(
-            team.name, team.participants, team.on_score + team.off_score)
+        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}".format(
+            team.name, team.participants, team.on_score + team.off_score, team.status)
         bot.send_message(message.chat.id, msg)
 
 @bot.message_handler(commands=["reg"])
