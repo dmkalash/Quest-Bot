@@ -3,7 +3,6 @@ from peewee import *
 import urllib.parse as urlparse
 import os
 
-# Database config
 def db_init():
     if 'HEROKU' in os.environ:
         urlparse.uses_netloc.append('postgres')
@@ -29,6 +28,8 @@ def db_init():
         database = SqliteDatabase(DATABASE)
         print('SQLite database created')
     return database
+
+database = db_init()
 
 # Bot token
 token = '1334067341:AAHlRSNcBd5HqbIzCt9Y-o_Lbwf_k_ZZsPU'

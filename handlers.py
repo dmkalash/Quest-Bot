@@ -6,7 +6,6 @@ from exception_guard import exception_guard
 from fill_script import fill_script
 from bot import bot
 from config import *
-from fill_script import fill_script
 
 ##### Decorators
 
