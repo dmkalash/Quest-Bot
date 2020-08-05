@@ -5,6 +5,7 @@ from utils import check_access, get_msg, add_file_id_to_txt
 from exception_guard import exception_guard
 from bot import bot
 from config import *
+from fill_script import fill_script
 
 ##### Decorators
 
@@ -41,6 +42,13 @@ def sudo(func):
     return wrapper
 
 ##### Handlers
+
+@bot.message_handler(commands=["fill"])
+@exception_guard
+@sudo
+def fill(message):
+    fill_script()
+    bot.send_message(message.chat.id, SUCCESS)
 
 @bot.message_handler(commands=["hello"])
 @exception_guard
