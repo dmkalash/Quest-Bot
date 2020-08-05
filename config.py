@@ -28,9 +28,13 @@ def db_init():
         DATABASE = 'quest.db'
         database = SqliteDatabase(DATABASE)
         print('SQLite database created')
-    database.connect()
+    try:
+        database.connect()
+    except Exception as err:
+        print(str(err))
+    return database
 
-db_init()
+database = db_init()
 
 # Bot token
 token = '1334067341:AAHlRSNcBd5HqbIzCt9Y-o_Lbwf_k_ZZsPU'
