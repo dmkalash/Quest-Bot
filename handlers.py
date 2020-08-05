@@ -3,6 +3,7 @@
 import view
 from utils import check_access, get_msg, add_file_id_to_txt
 from exception_guard import exception_guard
+from fill_script import fill_script
 from bot import bot
 from config import *
 from fill_script import fill_script
