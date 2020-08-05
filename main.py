@@ -8,7 +8,7 @@ import logging
 import handlers
 
 if __name__ == "__main__":
-    logger = logging.getLogger('bot')
+    logger = logging.getLogger('vmquest')
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                         level=logging.INFO)
     logger.setLevel(logging.DEBUG)
