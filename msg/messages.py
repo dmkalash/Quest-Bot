@@ -73,6 +73,8 @@ msg_wrong_point = """Не та КП"""
 
 msg_need_check_in = """Для начала введите check in"""
 
+msg_already_checked_in = """Уже сделан check_in"""
+
 messages = {MSG_HELLO: hello,
             MSG_HELP_ON: help_on,
             MSG_HELP_OFF: help_off,
@@ -92,4 +94,5 @@ messages = {MSG_HELLO: hello,
             MSG_NEED_CODE: msg_need_code,
             MSG_WRONG_CODE: msg_wrong_code,
             MSG_WRONG_POINT: msg_wrong_point,
-            MSG_NEED_CHECK_IN: msg_need_check_in}
+            MSG_NEED_CHECK_IN: msg_need_check_in,
+            ALREADY_CHECKED_IN: already_checked_in}

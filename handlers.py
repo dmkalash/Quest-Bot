@@ -137,9 +137,11 @@ def reg(message):
 @exception_guard
 @offline_mode
 @not_finished
-def check_in(message):
-    if not view.team.is_running(message.chat.id):
+def check_in(message): # TODO: сделать у ОФФКП номер круга, у команды - номер круга, и у разных кругов разные коды
+    if not view.team.is_running(message.chat.id): # TODO: таймеры работают криво, исправить
         bot.send_message(message.chat.id, get_msg(MSG_NOT_OFF_RUNNING))
+    elif view.team.is_team_responding(message.chat.id):
+        bot.send_message(message.chat.id, get_msg(ALREADY_CHECKED_IN))
     else:
         try:
             code = message.text.split()[1]
