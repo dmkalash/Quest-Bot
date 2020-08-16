@@ -18,9 +18,10 @@ def add_on_point(point_id, name, task, score, attempts, right_answer, artifacts)
     return point
 
 @exception_guard
-def add_off_point(id, name, start_code, finish_code, task, score, fast, middle, slow):
+def add_off_point(id, section, name, start_code, finish_code, task, score, fast, middle, slow):
     point = OffPoint.create(
         id=id,
+        section=section,
         name=name,
         start_code=start_code,
         finish_code=finish_code,

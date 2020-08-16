@@ -57,6 +57,7 @@ def fill_off_points():
     num = 1
     while True:
         id = int(read_data_line(fin))
+        section = int(read_data_line(fin))
         name = read_data_line(fin)
         start_code = read_data_line(fin)
         finish_code = read_data_line(fin)
@@ -65,7 +66,7 @@ def fill_off_points():
         fast = int(read_data_line(fin))
         middle = int(read_data_line(fin))
         slow = int(read_data_line(fin))
-        view.point.add_off_point(id, name, start_code, finish_code, task, score, fast, middle, slow)
+        view.point.add_off_point(id, section, name, start_code, finish_code, task, score, fast, middle, slow)
         print(num, 'OK')
         num += 1
         if read_data_line(fin) == EOF_MARKER:

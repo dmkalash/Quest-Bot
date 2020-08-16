@@ -37,11 +37,13 @@ class OffPoint(BaseModel):
         finish_code: check-out code for current point
         task: Text of task
         score: score that team getting after completing the task without mistakes
+        section: section point number for dividing in offline part
         fast: time(in minutes) for completing point in good case
         middle: time(in minutes) for completing point in middle case
         slow: time(in minutes) for completing point in bad case
     """
-    id = IntegerField(unique=True)
+    id = IntegerField()
+    section = IntegerField()
     name = TextField()
     start_code = TextField()
     finish_code = TextField()
@@ -66,6 +68,7 @@ class Team(BaseModel):
         responding: Flag if team is responding for a task
         cur_start_time: start date-time of current offline-mode point
         status: game status of the team
+        section: section team number for dividing teams in offline part
     """
     chat_id = IntegerField(unique=True)
     name = TextField()
