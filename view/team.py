@@ -134,7 +134,7 @@ def attempt_was_last(chat_id):
 
 @exception_guard
 def set_cur_time(chat_id):
-    query = (Team.update({Team.cur_start_time: datetime.now().time()}).where(Team.chat_id == chat_id))
+    query = (Team.update({Team.cur_start_time: datetime.now()}).where(Team.chat_id == chat_id))
     query.execute()
 
 @exception_guard

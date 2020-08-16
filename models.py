@@ -77,7 +77,7 @@ class Team(BaseModel):
     attempt_num = IntegerField(default=0)
     artifacts = IntegerField(default=0)
     responding = BooleanField(default=0)
-    cur_start_time = TimeField(null=True)
+    cur_start_time = DateTimeField(null=True)
     status = IntegerField(default=ONLINE_GAME_OFF)
 
 class OffReaction(BaseModel):
