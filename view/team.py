@@ -7,12 +7,19 @@ from datetime import datetime
 from exception_guard import exception_guard
 
 @exception_guard
-def add_team(chat_id, name, part_count):
+def add_team(chat_id, name, part_count, section):
     team = Team.create(
         chat_id=chat_id,
         name=name,
-        participants=part_count)
+        participants=part_count,
+        section = section)
     return team
+
+@exception_guard
+def set_section(chat_id, section):
+    query = (Team.update({Team.section: section}).where(Team.chat_id == chat_id))
+    query.execute()
+    return SUCCESS
 
 @exception_guard
 def get_team(chat_id):

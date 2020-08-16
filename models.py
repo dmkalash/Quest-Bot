@@ -64,7 +64,7 @@ class Team(BaseModel):
         attempt_num: current point completing attempt number
         artifacts: count of artifacts
         responding: Flag if team is responding for a task
-        cur_start_time: start time of current offline-mode point
+        cur_start_time: start date-time of current offline-mode point
         status: game status of the team
     """
     chat_id = IntegerField(unique=True)
@@ -79,6 +79,7 @@ class Team(BaseModel):
     responding = BooleanField(default=0)
     cur_start_time = DateTimeField(null=True)
     status = IntegerField(default=ONLINE_GAME_OFF)
+    section = IntegerField(default=0)
 
 class OffReaction(BaseModel):
     """

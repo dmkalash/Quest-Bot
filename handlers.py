@@ -120,8 +120,8 @@ def team(message):
     if team == ERROR:
         bot.message_handler(message.chat.id, ERROR)
     else:
-        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}".format(
-            team.name, team.participants, team.on_score + team.off_score, team.status)
+        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: ".format(
+            team.name, team.participants, team.on_score + team.off_score, team.status, team.section)
         bot.send_message(message.chat.id, msg)
 
 @bot.message_handler(commands=["reg"])
@@ -129,16 +129,24 @@ def team(message):
 @sudo
 @online_mode
 def reg(message):
-    name, part_count = message.text.split()[1:]
-    if view.team.add_team(message.chat.id, name, int(part_count)) != ERROR:
+    name, part_count, section = message.text.split()[1:]
+    if view.team.add_team(message.chat.id, name, int(part_count), int(section)) != ERROR:
         bot.send_message(message.chat.id, 'OK')
+
+@bot.message_handler(commands=["set_section"])
+@exception_guard
+@sudo
+@online_mode
+def set_section(message):
+    section = int(message.text.split()[1])
+    bot.send_message(message.chat.id, view.team.set_section(message.chat.id, section))
 
 @bot.message_handler(commands=["checkin"])
 @exception_guard
 @offline_mode
 @not_finished
 def check_in(message): # TODO: сделать у ОФФКП номер круга, у команды - номер круга, и у разных кругов разные коды
-    if not view.team.is_running(message.chat.id): # TODO: таймеры работают криво, исправить
+    if not view.team.is_running(message.chat.id):
         bot.send_message(message.chat.id, get_msg(MSG_NOT_OFF_RUNNING))
     elif view.team.is_team_responding(message.chat.id):
         bot.send_message(message.chat.id, get_msg(ALREADY_CHECKED_IN))
