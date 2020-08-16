@@ -181,6 +181,12 @@ def check_out(message):
             else:
                 bot.send_message(message.chat.id, get_msg(MSG_WRONG_CODE))
 
+@bot.message_handler(commands=["delete_team"])
+@exception_guard
+@sudo
+def delete_team(message):
+    bot.send_message(message.chat.id, view.team.delete_team(message.chat.id))
+
 @bot.message_handler(content_types=["photo", "document", "audio"])
 @exception_guard
 @sudo
@@ -243,3 +249,4 @@ def send_task(chat_id):
             bot.send_audio(chat_id, file.file_id)
         else:
             print('send_task problem', point, file.file_id, file.file_type)
+
