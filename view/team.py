@@ -24,7 +24,7 @@ def get_all_teams():
 
 @exception_guard
 def flush_team_status():
-    query = (Team.update({Team.status: OFFLINE_GAME_OFF}))
+    query = (Team.update({Team.status: OFFLINE_GAME_OFF, Team.off_score: 0}))
     query.execute()
     return SUCCESS
 
