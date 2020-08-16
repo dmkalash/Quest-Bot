@@ -117,10 +117,11 @@ def sos(message):
 @exception_guard
 def team(message):
     team = view.team.get_team(message.chat.id)
+    print(team)
     if team == ERROR:
         bot.message_handler(message.chat.id, ERROR)
     else:
-        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: ".format(
+        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: {}".format(
             team.name, team.participants, team.on_score + team.off_score, team.status, team.section)
         bot.send_message(message.chat.id, msg)
 
