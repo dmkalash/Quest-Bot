@@ -37,8 +37,9 @@ class OffPoint(BaseModel):
         finish_code: check-out code for current point
         task: Text of task
         score: score that team getting after completing the task without mistakes
-        fast, middle, slow: time(in minutes) for completing point in good, middle and bad cases. There are
-            fast + middle + slow minutes for current point
+        fast: time(in minutes) for completing point in good case
+        middle: time(in minutes) for completing point in middle case
+        slow: time(in minutes) for completing point in bad case
     """
     id = IntegerField(unique=True)
     name = TextField()
