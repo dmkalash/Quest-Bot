@@ -161,6 +161,8 @@ def check_in(message): # TODO: сделать у ОФФКП номер круг�
                 bot.send_message(message.chat.id, get_msg(MSG_WRONG_CODE))
             elif point.id != view.point.cur_point(message.chat.id).id:
                 bot.send_message(message.chat.id, get_msg(MSG_WRONG_POINT))
+            elif point.section != view.team.get_section(message.chat.id):
+                bot.send_message(message.chat.id, get_msg(MSG_WRONG_SECTION))
             else:
                 bot.send_message(message.chat.id, point.task)
                 view.team.set_team_responding(message.chat.id)

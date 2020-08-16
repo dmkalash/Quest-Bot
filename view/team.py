@@ -45,6 +45,10 @@ def is_team_responding(chat_id):
     return get_team(chat_id).responding
 
 @exception_guard
+def get_section(chat_id):
+    return get_team(chat_id).section
+
+@exception_guard
 def next_online_level(chat_id):
     team = get_team(chat_id)
     point = view.point.get_point(team.on_point)
