@@ -41,9 +41,6 @@ OFFLINE = 1
 # Mode configuration
 MODE = OFFLINE
 
-# data filling configuration
-NEED_TO_FILL_DB = True
-
 # fill-data paths
 ON_POINT_PATH = 'data/on_point.txt'
 OFF_POINT_PATH = 'data/off_point.txt'

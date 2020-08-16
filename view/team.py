@@ -143,3 +143,4 @@ def set_cur_time(chat_id):
 def delete_team(chat_id):
     team = get_team(chat_id)
     team.delete_instance()
+    return SUCCESS
