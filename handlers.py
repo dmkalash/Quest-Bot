@@ -127,7 +127,6 @@ def team(message):
 @bot.message_handler(commands=["reg"])
 @exception_guard
 @sudo
-@online_mode
 def reg(message):
     name, part_count, section = message.text.split()[1:]
     if view.team.add_team(message.chat.id, name, int(part_count), int(section)) != ERROR:
