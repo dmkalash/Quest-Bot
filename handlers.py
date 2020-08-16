@@ -117,7 +117,7 @@ def sos(message):
 @exception_guard
 def team(message):
     team = view.team.get_team(message.chat.id)
-    print(team)
+    print(team, team == ERROR, type(team))
     if team == ERROR:
         bot.message_handler(message.chat.id, ERROR)
     else:
