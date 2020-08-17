@@ -39,7 +39,7 @@ ONLINE = 0
 OFFLINE = 1
 
 # Mode configuration
-MODE = ONLINE
+MODE = OFFLINE
 
 # fill-data paths
 ON_POINT_PATH = 'data/on_point.txt'
