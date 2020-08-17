@@ -117,8 +117,9 @@ def sos(message):
 @exception_guard
 def team(message):
     team = view.team.get_team(message.chat.id)
-    print(team, team == ERROR, type(team))
+    print(team, team == ERROR, type(team), ERROR, type(ERROR))
     if team == ERROR:
+        print('HERE!!!!')
         bot.message_handler(message.chat.id, ERROR)
     else:
         msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: {}".format(
