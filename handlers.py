@@ -124,6 +124,16 @@ def team(message):
             team.name, team.participants, team.on_score + team.off_score, team.status, team.section)
         bot.send_message(message.chat.id, msg)
 
+@bot.message_handler(commands=["task"])
+@exception_guard
+@online_mode
+@not_finished
+def answer(message):
+    if not view.team.is_running(message.chat.id):
+        bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
+    else:
+        send_task(message.chat.id)
+
 @bot.message_handler(commands=["reg"])
 @exception_guard
 @sudo
@@ -144,7 +154,7 @@ def set_section(message):
 @exception_guard
 @offline_mode
 @not_finished
-def check_in(message): # TODO: сделать у ОФФКП номер круга, у команды - номер круга, и у разных кругов разные коды
+def check_in(message):
     if not view.team.is_running(message.chat.id):
         bot.send_message(message.chat.id, get_msg(MSG_NOT_OFF_RUNNING))
     elif view.team.is_team_responding(message.chat.id):
