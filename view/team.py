@@ -70,7 +70,7 @@ def next_online_level(chat_id):
 @exception_guard
 def next_offline_level(chat_id):
     team = get_team(chat_id)
-    point = view.point.get_point(team.off_point)
+    point = view.point.get_point(team.off_point, team.section)
     score = team.off_score + max(point.score - point.score / OFFLINE_POINT_ATTEMPTS * team.attempt_num, 0)
     new_point_num = point.id + 1
     if new_point_num == LAST_OFF_POINT_NUM:

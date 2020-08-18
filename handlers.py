@@ -190,7 +190,8 @@ def check_out(message):
         except IndexError:
             bot.send_message(get_msg(MSG_NEED_CODE))
         else:
-            right_code = view.point.cur_point(message.chat.id).finish_code
+            point = view.point.cur_point(message.chat.id)
+            right_code = point.finish_code
             if code == right_code:
                 reaction = view.reaction.get_answer_reaction(message.chat.id, RIGHT_ANSWER)
                 bot.send_message(message.chat.id, reaction.text)

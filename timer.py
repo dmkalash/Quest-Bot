@@ -13,7 +13,7 @@ def check_time():
         if not team.responding:
             continue
         start_time = team.cur_start_time
-        cur_point = view.point.get_point(team.off_point)
+        cur_point = view.point.get_point(team.off_point, team.section)
         time_delta = (datetime.now() - start_time).total_seconds() // 60
         attempt_num = team.attempt_num
         if attempt_num == MIDDLE_ATTEMPT and time_delta >= cur_point.slow:
