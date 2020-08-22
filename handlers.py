@@ -9,7 +9,7 @@ from config import *
 
 ##### Decorators
 # TODO: сделать команду выключения ответок бота
-# TODO: сделать команду удаления базы данных
+# TODO: сделать данные для бд в csv
 def online_mode(func):
     def wrapper(message):
         if MODE == ONLINE:
@@ -136,6 +136,7 @@ def answer(message):
 
 @bot.message_handler(commands=["reg"])
 @exception_guard
+@online_mode
 @sudo
 def reg(message):
     name, part_count, section = message.text.split()[1:]
@@ -232,6 +233,7 @@ def plain_text(message):
 
 @exception_guard
 def online_plain_text(message):
+    # TODO: сделать /next для "пояснительных" КП. Их признак - score == 0. Ничего не выводить, просто след уровень и таск
     if view.team.is_team_responding(message.chat.id):
         point = view.point.cur_point(message.chat.id)
         if point.right_answer.upper() == message.text.upper():
