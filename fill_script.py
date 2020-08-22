@@ -3,7 +3,7 @@ from utils import create_tables, fill_on_points, fill_off_points, fill_on_reacti
 
 class ScriptFactory:
     def __init__(self):
-        self._fillers = {
+        self._scripts = {
             'create_tables': create_tables,
             'on_points': fill_on_points,
             'off_points': fill_off_points,
@@ -13,8 +13,8 @@ class ScriptFactory:
         }
 
     def run(self):
-        for key in self._fillers:
-            self._fillers[key]()
+        for key in self._scripts:
+            self._scripts[key]()
             print(key, ': OK')
 
 def fill_script():
