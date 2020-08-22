@@ -4,11 +4,11 @@ from models import File
 from exception_guard import exception_guard
 
 @exception_guard
-def add_file(file_id, order_num, point, file_type):
+def add_file(file_id, point_num, order_num, file_type):
     file = File.create(
         file_id=file_id,
+        point_num=point_num,
         order_num=order_num,
-        point=point,
         file_type=file_type)
     return file
 
