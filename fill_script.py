@@ -20,3 +20,4 @@ class ScriptFactory:
 def fill_script():
     factory = ScriptFactory()
     factory.run()
+    # TODO: включить fill.py

@@ -1,10 +1,7 @@
 import view
 import pandas as pd
 from exception_guard import exception_guard
-from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
-from msg import messages
 from config import *
-from config import database
 
 class FillFactory:
     def __init__(self):
