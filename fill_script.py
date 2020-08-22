@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from utils import create_tables, fill_on_points, fill_off_points, fill_on_reactions, fill_off_reactions, fill_files
 
-class FillFactory:
+class ScriptFactory:
     def __init__(self):
         self._fillers = {
             'create_tables': create_tables,
@@ -18,5 +18,5 @@ class FillFactory:
             print(key, ': OK')
 
 def fill_script():
-    factory = FillFactory()
+    factory = ScriptFactory()
     factory.run()
