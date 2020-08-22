@@ -17,6 +17,17 @@ def add_reaction(point_type, text, point_num, order_num):
         order_num=order_num)
     return reaction
 
+'''
+@exception_guard
+def add_reaction(**kwargs): # TODO: плохая архитектура. Следует либо сделать 2 функции, либо объединить On и Off R.
+    if point_type == ONLINE:
+        point_class = OnReaction
+    else:
+        point_class = OffReaction
+    reaction = point_class.create(**kwargs)
+    return reaction
+'''
+
 @exception_guard
 def get_reaction_with_point(point_num, order_num):
     if MODE == ONLINE:

@@ -12,6 +12,13 @@ def add_file(file_id, point_num, order_num, file_type):
         file_type=file_type)
     return file
 
+'''
+@exception_guard
+def add_file(**kwargs):
+    file = File.create(**kwargs)
+    return file
+'''
+
 @exception_guard
 def get_files_with_point(point):
     query = (File.select().where(File.point == point).order_by(File.order_num))

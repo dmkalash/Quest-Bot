@@ -17,6 +17,13 @@ def add_on_point(point_id, name, task, score, attempts, right_answer, artifacts)
         artifacts=artifacts)
     return point
 
+'''
+@exception_guard
+def add_on_point(**kwargs):
+    point = OnPoint.create(**kwargs)
+    return point
+'''
+
 @exception_guard
 def add_off_point(id, section, name, start_code, finish_code, task, score, fast, middle, slow):
     point = OffPoint.create(
@@ -31,6 +38,13 @@ def add_off_point(id, section, name, start_code, finish_code, task, score, fast,
         middle=middle,
         slow=slow)
     return point
+
+'''
+@exception_guard
+def add_off_point(**kwargs):
+    point = OffPoint.create(**kwargs)
+    return point
+'''
 
 @exception_guard
 def get_point(id, section = 0):
