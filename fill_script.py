@@ -1,23 +1,12 @@
 # -*- coding: utf-8 -*-
-from utils import create_tables, fill_on_points, fill_off_points, fill_on_reactions, fill_off_reactions, fill_files
-
-class ScriptFactory:
-    def __init__(self):
-        self._scripts = {
-            'create_tables': create_tables,
-            'on_points': fill_on_points,
-            'off_points': fill_off_points,
-            'on_reactions': fill_on_reactions,
-            'off_reactions': fill_off_reactions,
-            'files': fill_files
-        }
-
-    def run(self):
-        for key in self._scripts:
-            self._scripts[key]()
-            print(key, ': OK')
+from utils import create_tables
+from fill import FillFactory
+from config import *
 
 def fill_script():
-    factory = ScriptFactory()
-    factory.run()
-    # TODO: включить fill.py
+    print(create_tables())
+    factory = FillFactory()
+    factory.fill(ON_POINT_KEY, 'data/' + ON_POINT_KEY + '.csv')
+    factory.fill(OFF_POINT_KEY, 'data/' + OFF_POINT_KEY + '.csv')
+    factory.fill(REACTION_KEY, 'data/' + REACTION_KEY + '.csv')
+    factory.fill(FILE_KEY, 'data/' + FILE_KEY + '.csv')

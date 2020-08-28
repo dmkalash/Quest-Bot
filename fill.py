@@ -6,10 +6,10 @@ from config import *
 class FillFactory:
     def __init__(self):
         self._fillers = {
-            'on_points': view.point.add_on_point,
-            'off_points': view.point.add_off_point,
-            'reactions': view.reaction.add_reaction, # TODO: СОЗДАТЬ КОЛОНКУ С ТИПОМ В CSV: ONLINE/OFFLINE!!!!!
-            'files': view.file.add_file
+            ON_POINT_KEY: view.point.add_on_point,
+            OFF_POINT_KEY: view.point.add_off_point,
+            REACTION_KEY: view.reaction.add_reaction,
+            FILE_KEY: view.file.add_file
         }
 
     @exception_guard
@@ -17,6 +17,6 @@ class FillFactory:
         data = pd.read_csv(file_path)
         for index, row in data.iterrows():
             kwargs = {key: row[key] for key in row.keys()}
-            self._fillers[format](kwargs) # TODO: когда буду вводить эту функцию, поменять add-функцию на kwargs
+            self._fillers[format](kwargs)
             print(index, 'OK')
         return SUCCESS  # TODO: выводить OK и SUCCESS только если правда все успешно

@@ -6,45 +6,14 @@ from models import OnPoint, OffPoint
 from exception_guard import exception_guard
 
 @exception_guard
-def add_on_point(point_id, name, task, score, attempts, right_answer, artifacts):
-    point = OnPoint.create(
-        id=point_id,
-        name=name,
-        task=task,
-        attempts=attempts,
-        score=score,
-        right_answer=right_answer,
-        artifacts=artifacts)
-    return point
-
-'''
-@exception_guard
 def add_on_point(**kwargs):
     point = OnPoint.create(**kwargs)
     return point
-'''
 
-@exception_guard
-def add_off_point(id, section, name, start_code, finish_code, task, score, fast, middle, slow):
-    point = OffPoint.create(
-        id=id,
-        section=section,
-        name=name,
-        start_code=start_code,
-        finish_code=finish_code,
-        task=task,
-        score=score,
-        fast=fast,
-        middle=middle,
-        slow=slow)
-    return point
-
-'''
 @exception_guard
 def add_off_point(**kwargs):
     point = OffPoint.create(**kwargs)
     return point
-'''
 
 @exception_guard
 def get_point(id, section = 0):

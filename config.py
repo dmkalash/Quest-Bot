@@ -42,12 +42,12 @@ OFFLINE = 1
 MODE = OFFLINE
 
 # fill-data paths
-ON_POINT_PATH = 'data/on_point.txt'
-OFF_POINT_PATH = 'data/off_point.txt'
-TEAM_PATH = 'data/team.txt'
-ON_REACTION_PATH = 'data/on_reaction.txt'
-OFF_REACTION_PATH = 'data/off_reaction.txt'
-FILE_PATH = 'data/file.txt'
+ON_POINT_KEY = 'on_point'
+OFF_POINT_KEY = 'off_point'
+TEAM_KEY = 'team'
+REACTION_KEY = 'reaction'
+FILE_KEY = 'file'
+FILE_ID_PATH = 'file.txt'
 
 # File types
 TEXT_TYPE = 1
