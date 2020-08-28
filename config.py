@@ -39,7 +39,7 @@ ONLINE = 0
 OFFLINE = 1
 
 # Mode configuration
-MODE = OFFLINE
+MODE = ONLINE
 
 # fill-data paths
 ON_POINT_KEY = 'on_point'
@@ -61,8 +61,8 @@ CHECKER_TIME = 15.0
 # ID's for 'Sudo'-commands
 ADMIN_USER_IDS = [75129762]
 
-# Marker for end-of-file in fill-files
-EOF_MARKER = '.'
+# CSV-data separator
+CSV_SEP = ';'
 
 # Online-game status
 ONLINE_GAME_OFF = 1 # game disabled

@@ -14,9 +14,10 @@ class FillFactory:
 
     @exception_guard
     def fill(self, format, file_path):
-        data = pd.read_csv(file_path)
+        data = pd.read_csv(file_path, sep=CSV_SEP)
+        print(format)
         for index, row in data.iterrows():
             kwargs = {key: row[key] for key in row.keys()}
-            self._fillers[format](kwargs)
+            self._fillers[format](**kwargs)
             print(index, 'OK')
         return SUCCESS  # TODO: выводить OK и SUCCESS только если правда все успешно
