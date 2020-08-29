@@ -19,6 +19,12 @@ def create_tables():
         return SUCCESS
 
 @exception_guard
+def drop_tables():
+    with database:
+        database.drop_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
+        return SUCCESS
+
+@exception_guard
 def check_access(user_id):
     return user_id in ADMIN_USER_IDS
 

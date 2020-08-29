@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import view
-from utils import check_access, get_msg
+from utils import check_access, get_msg, drop_tables
 from exception_guard import exception_guard
 from fill_script import fill_script
 from bot import bot
@@ -210,6 +210,12 @@ def check_out(message):
 @sudo
 def delete_team(message):
     bot.send_message(message.chat.id, view.team.delete_team(message.chat.id))
+
+@bot.message_handler(commands=["reset"])
+@exception_guard
+@sudo
+def reset(message):
+    bot.send_message(message.chat.id, drop_tables())
 
 @bot.message_handler(content_types=["photo", "document", "audio"])
 @exception_guard
