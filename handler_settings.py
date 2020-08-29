@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import view
 from bot import bot
 from config import MODE, ONLINE, MSG_ONLINE_MODE, OFFLINE, MSG_OFFLINE_MODE, MSG_FINISHED, MSG_SUDO

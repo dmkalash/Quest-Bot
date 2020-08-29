@@ -4,7 +4,16 @@ from bot import bot
 from threading import Timer
 import config
 import logging
-import handlers
+import util_handlers
+import user_handlers
+
+# TODO: выделить отдельно логику реализации команд конкретного квеста(для будущих поколений)
+# TODO: db_init в отдельный файл
+# TODO: сделать все команды удобнее
+# TODO: сделать листинг команд для разраба(выводить один файл, если есть права - дописывать туда второй файл)
+# TODO: выделить все константные ответы в messages
+# TODO: решить, делать ли тесты
+# TODO: написать документацию
 
 if __name__ == "__main__":
     logger = logging.getLogger('vmquest')
