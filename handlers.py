@@ -9,10 +9,14 @@ from config import *
 
 ##### Decorators
 # TODO: сделать команду выключения ответок бота
-# TODO: сделать команду /reset базы данных - удаление всех таблиц
 # TODO: выделить отдельно логику реализации команд конкретного квеста(для будущих поколений)
 # TODO: написать документацию
 # TODO: решить, делать ли тесты
+# TODO: db_init в отдельный файл
+# TODO: сделать /answer ответ одним сообщением
+# TODO: сделать все команды удобнее
+# TODO: сделать листинг команд для разраба(выводить один файл, если есть права - дописывать туда второй файл)
+
 def online_mode(func):
     def wrapper(message):
         if MODE == ONLINE:
@@ -285,4 +289,3 @@ def send_task(chat_id):
             bot.send_audio(chat_id, file.file_id)
         else:
             print('send_task problem', point, file.file_id, file.file_type)
-

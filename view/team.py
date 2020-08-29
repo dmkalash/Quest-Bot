@@ -15,13 +15,6 @@ def add_team(chat_id, name, part_count, section):
         section = section)
     return team
 
-'''
-@exception_guard
-def add_team(**kwargs):
-    team = Team.create(**kwargs)
-    return team
-'''
-
 @exception_guard
 def set_section(chat_id, section):
     query = (Team.update({Team.section: section}).where(Team.chat_id == chat_id))
