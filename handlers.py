@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import view
-from utils import check_access, get_msg, add_file_id_to_txt
+from utils import check_access, get_msg
 from exception_guard import exception_guard
 from fill_script import fill_script
 from bot import bot
@@ -9,7 +9,10 @@ from config import *
 
 ##### Decorators
 # TODO: сделать команду выключения ответок бота
-# TODO: сделать данные для бд в csv
+# TODO: сделать команду /reset базы данных - удаление всех таблиц
+# TODO: выделить отдельно логику реализации команд конкретного квеста(для будущих поколений)
+# TODO: написать документацию
+# TODO: решить, делать ли тесты
 def online_mode(func):
     def wrapper(message):
         if MODE == ONLINE:
@@ -218,9 +221,8 @@ def send_files(message):
         file_id = message.document.file_id
     else:
         file_id = message.audio.file_id
-    file_id = message.caption + '\n' + file_id + '\n'
+    file_id = file_id + '\n'
     bot.send_message(message.chat.id, file_id)
-    print('add_file_to_txt: ', add_file_id_to_txt(file_id))
 
 @bot.message_handler(content_types=["text"])
 @exception_guard
