@@ -148,6 +148,15 @@ def set_cur_time(chat_id):
     query.execute()
 
 @exception_guard
+def change_bot_reaction(chat_id, mode):
+    query = (Team.update({Team.bot_reaction: mode }).where(Team.chat_id == chat_id))
+    query.execute()
+
+@exception_guard
+def is_bot_speaking(chat_id):
+    return get_team(chat_id).bot_reaction
+
+@exception_guard
 def delete_team(chat_id):
     team = get_team(chat_id)
     team.delete_instance()

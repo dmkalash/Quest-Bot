@@ -1,55 +1,21 @@
 # -*- coding: utf-8 -*-
 
 import view
-from utils import check_access, get_msg, drop_tables
+from handler_settings import online_mode, offline_mode, not_finished, sudo
+from utils import get_msg, drop_tables
 from exception_guard import exception_guard
 from fill_script import fill_script
 from bot import bot
 from config import *
 
-##### Decorators
-# TODO: сделать команду выключения ответок бота
 # TODO: выделить отдельно логику реализации команд конкретного квеста(для будущих поколений)
-# TODO: написать документацию
-# TODO: решить, делать ли тесты
 # TODO: db_init в отдельный файл
-# TODO: сделать /answer ответ одним сообщением
 # TODO: сделать все команды удобнее
 # TODO: сделать листинг команд для разраба(выводить один файл, если есть права - дописывать туда второй файл)
+# TODO: выделить все константные ответы в messages
+# TODO: решить, делать ли тесты
+# TODO: написать документацию
 
-def online_mode(func):
-    def wrapper(message):
-        if MODE == ONLINE:
-            func(message)
-        else:
-            bot.send_message(message.chat.id, get_msg(MSG_ONLINE_MODE))
-    return wrapper
-
-def offline_mode(func):
-    def wrapper(message):
-        if MODE == OFFLINE:
-            func(message)
-        else:
-            bot.send_message(message.chat.id, get_msg(MSG_OFFLINE_MODE))
-    return wrapper
-
-def not_finished(func):
-    def wrapper(message):
-        if not view.team.is_finished(message.chat.id):
-            func(message)
-        else:
-            bot.send_message(message.chat.id, get_msg(MSG_FINISHED))
-    return wrapper
-
-def sudo(func):
-    def wrapper(message):
-        if check_access(message.from_user.id):
-            func(message)
-        else:
-            bot.send_message(message.chat.id, get_msg(MSG_SUDO))
-    return wrapper
-
-##### Handlers
 
 @bot.message_handler(commands=["fill"])
 @exception_guard
@@ -233,6 +199,18 @@ def check_out(message):
             else:
                 bot.send_message(message.chat.id, get_msg(MSG_WRONG_CODE))
 
+@bot.message_handler(commands=["speak"])
+@exception_guard
+def speak(message):
+    view.team.change_bot_reaction(message.chat.id, True)
+    bot.send_message(message.chat.id, 'Соскучились по мне?')
+
+@bot.message_handler(commands=["shut"])
+@exception_guard
+def shut(message):
+    view.team.change_bot_reaction(message.chat.id, False)
+    bot.send_message(message.chat.id, 'Окей, молчу')
+
 @bot.message_handler(commands=["unreg"])
 @exception_guard
 @sudo
@@ -269,11 +247,13 @@ def plain_text(message):
 @exception_guard
 def online_plain_text(message):
     # TODO: сделать /next для "пояснительных" КП. Их признак - score == 0. Ничего не выводить, просто след уровень и таск
-    bot.send_message(message.chat.id, 'И не говори')
+    if view.team.is_bot_speaking(message.chat.id):
+        bot.send_message(message.chat.id, 'И не говори')
 
 @exception_guard
 def offline_plain_text(message):
-    bot.send_message(message.chat.id, 'И не говори')
+    if view.team.is_bot_speaking(message.chat.id):
+        bot.send_message(message.chat.id, 'И не говори')
 
 @exception_guard
 def send_task(chat_id):

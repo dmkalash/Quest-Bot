@@ -65,10 +65,11 @@ class Team(BaseModel):
         off_point: current number of offline-point
         attempt_num: current point completing attempt number
         artifacts: count of artifacts
-        responding: Flag if team is responding for a task
-        cur_start_time: start date-time of current offline-mode point
         status: game status of the team
         section: section team number for dividing teams in offline part
+        cur_start_time: start date-time of current offline-mode point
+        bot_reaction: users' plain text bot reactions(ON/OFF)
+        responding: Flag if team is responding for a task
     """
     chat_id = IntegerField(unique=True)
     name = TextField()
@@ -79,10 +80,11 @@ class Team(BaseModel):
     off_point = IntegerField(default=0)
     attempt_num = IntegerField(default=0)
     artifacts = IntegerField(default=0)
-    responding = BooleanField(default=0)
-    cur_start_time = DateTimeField(null=True)
     status = IntegerField(default=ONLINE_GAME_OFF)
     section = IntegerField(default=0)
+    cur_start_time = DateTimeField(null=True)
+    bot_reaction = BooleanField(default=True)
+    responding = BooleanField(default=False)
 
 class OffReaction(BaseModel):
     """
