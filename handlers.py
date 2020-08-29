@@ -142,9 +142,15 @@ def answer(message):
 @online_mode
 @sudo
 def reg(message):
-    name, part_count, section = message.text.split()[1:]
-    if view.team.add_team(message.chat.id, name, int(part_count), int(section)) != ERROR:
-        bot.send_message(message.chat.id, 'OK')
+    try:
+        name, part_count, section = message.text.split()[1:]
+    except:
+        bot.send_message(message.chat.id, "/reg TeamName PartCount Section")
+    else:
+        if view.team.add_team(message.chat.id, name, int(part_count), int(section)) != ERROR:
+            bot.send_message(message.chat.id, 'OK')
+        else:
+            bot.send_message(message.chat.id, 'ERROR')
 
 @bot.message_handler(commands=["set_section"])
 @exception_guard
@@ -205,10 +211,10 @@ def check_out(message):
             else:
                 bot.send_message(message.chat.id, get_msg(MSG_WRONG_CODE))
 
-@bot.message_handler(commands=["delete_team"])
+@bot.message_handler(commands=["unreg"])
 @exception_guard
 @sudo
-def delete_team(message):
+def unreg(message):
     bot.send_message(message.chat.id, view.team.delete_team(message.chat.id))
 
 @bot.message_handler(commands=["reset"])
