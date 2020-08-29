@@ -77,9 +77,12 @@ def pinned(message):
 @online_mode
 @not_finished
 def enter(message):
-    view.team.on_game_start(message.chat.id)
-    bot.send_message(message.chat.id, get_msg(MSG_ONLINE_START))
-    send_task(message.chat.id)
+    if not view.team.is_running(message.chat.id):
+        view.team.on_game_start(message.chat.id)
+        bot.send_message(message.chat.id, get_msg(MSG_ONLINE_START))
+        send_task(message.chat.id)
+    else:
+        bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
 
 @bot.message_handler(commands=["kill"])
 @exception_guard
@@ -110,8 +113,23 @@ def help(message):
 @not_finished
 def answer(message):
     if view.team.is_running(message.chat.id):
-        view.team.set_team_responding(message.chat.id)
-        bot.send_message(message.chat.id, get_msg(MSG_ANSWER))
+        text = message.text.split()[1]
+        point = view.point.cur_point(message.chat.id)
+        if point.right_answer.upper() == text.upper():
+            reaction = view.reaction.get_answer_reaction(message.chat.id, RIGHT_ANSWER)
+            bot.send_message(message.chat.id, reaction.text)
+            view.team.next_online_level(message.chat.id)
+            if view.team.is_finished(message.chat.id):
+                bot.send_message(message.chat.id, get_msg(MSG_ONLINE_END))
+            else:
+                send_task(message.chat.id)
+        else:
+            reaction = view.reaction.get_answer_reaction(message.chat.id, WRONG_ANSWER)
+            bot.send_message(message.chat.id, reaction.text)
+            last_reaction = view.reaction.get_answer_reaction(message.chat.id, LAST_WRONG_ANSWER)
+            if view.team.set_wrong(message.chat.id) == ATTEMPT_WAS_LAST:
+                bot.send_message(message.chat.id, last_reaction.text)
+            send_task(message.chat.id)
     else:
         bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
 
@@ -135,7 +153,7 @@ def team(message):
 @exception_guard
 @online_mode
 @not_finished
-def answer(message):
+def task(message):
     if not view.team.is_running(message.chat.id):
         bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
     else:
@@ -243,7 +261,6 @@ def send_files(message):
 @bot.message_handler(content_types=["text"])
 @exception_guard
 def plain_text(message):
-    print(message.text)
     if MODE == ONLINE:
         online_plain_text(message)
     else:
@@ -252,25 +269,7 @@ def plain_text(message):
 @exception_guard
 def online_plain_text(message):
     # TODO: сделать /next для "пояснительных" КП. Их признак - score == 0. Ничего не выводить, просто след уровень и таск
-    if view.team.is_team_responding(message.chat.id):
-        point = view.point.cur_point(message.chat.id)
-        if point.right_answer.upper() == message.text.upper():
-            reaction = view.reaction.get_answer_reaction(message.chat.id, RIGHT_ANSWER)
-            bot.send_message(message.chat.id, reaction.text)
-            view.team.next_online_level(message.chat.id)
-            if view.team.is_finished(message.chat.id):
-                bot.send_message(message.chat.id, get_msg(MSG_ONLINE_END))
-            else:
-                send_task(message.chat.id)
-        else:
-            reaction = view.reaction.get_answer_reaction(message.chat.id, WRONG_ANSWER)
-            bot.send_message(message.chat.id, reaction.text)
-            last_reaction = view.reaction.get_answer_reaction(message.chat.id, LAST_WRONG_ANSWER)
-            if view.team.set_wrong(message.chat.id) == ATTEMPT_WAS_LAST:
-                bot.send_message(message.chat.id, last_reaction.text)
-            send_task(message.chat.id)
-    else:
-        bot.send_message(message.chat.id, 'И не говори')
+    bot.send_message(message.chat.id, 'И не говори')
 
 @exception_guard
 def offline_plain_text(message):

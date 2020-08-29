@@ -62,7 +62,6 @@ def next_online_level(chat_id):
              .update({Team.on_score: score,
                       Team.on_point: new_point_num,
                       Team.attempt_num: 0,
-                      Team.responding: False,
                       Team.status: status})
              .where(Team.chat_id == chat_id))
     query.execute()
