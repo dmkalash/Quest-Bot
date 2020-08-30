@@ -12,7 +12,7 @@ def add_team(chat_id, name, part_count, section):
         chat_id=chat_id,
         name=name,
         participants=part_count,
-        section = section)
+        section=section)
     return team
 
 @exception_guard

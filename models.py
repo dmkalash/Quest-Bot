@@ -2,7 +2,8 @@
 
 from peewee import *
 from config import *
-from config import database
+from db_init import database
+
 
 class BaseModel(Model):
     class Meta:

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from db_init import database
 from bot import bot
 from threading import Timer
+#import db_init
 import config
 import logging
 import util_handlers
@@ -12,14 +14,13 @@ import user_handlers
 # TODO: сделать листинг команд для разраба отдельной командой
 # TODO: выделить все константные ответы в messages
 # TODO: решить, делать ли тесты
-# TODO: params в Models
 
 if __name__ == "__main__":
     logger = logging.getLogger('vmquest')
     logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
     logger.setLevel(logging.DEBUG)
 
-    config.database.connect()
+    database.connect()
 
     from timer import check_time
     if config.MODE == config.OFFLINE:
