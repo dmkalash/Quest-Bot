@@ -6,6 +6,7 @@ from models import Team
 from datetime import datetime
 from exception_guard import exception_guard
 
+
 @exception_guard
 def add_team(chat_id, name, part_count, section):
     team = Team.create(
@@ -15,19 +16,23 @@ def add_team(chat_id, name, part_count, section):
         section=section)
     return team
 
+
 @exception_guard
 def set_section(chat_id, section):
     query = (Team.update({Team.section: section}).where(Team.chat_id == chat_id))
     query.execute()
     return SUCCESS
 
+
 @exception_guard
 def get_team(chat_id):
     return Team.get(Team.chat_id == chat_id)
 
+
 @exception_guard
 def get_all_teams():
     return (Team.select())
+
 
 @exception_guard
 def flush_team_status():
@@ -35,18 +40,22 @@ def flush_team_status():
     query.execute()
     return SUCCESS
 
+
 @exception_guard
 def set_team_responding(chat_id):
     query = (Team.update({Team.responding: True}).where(Team.chat_id == chat_id))
     query.execute()
 
+
 @exception_guard
 def is_team_responding(chat_id):
     return get_team(chat_id).responding
 
+
 @exception_guard
 def get_section(chat_id):
     return get_team(chat_id).section
+
 
 @exception_guard
 def next_online_level(chat_id):
@@ -65,6 +74,7 @@ def next_online_level(chat_id):
                       Team.status: status})
              .where(Team.chat_id == chat_id))
     query.execute()
+
 
 @exception_guard
 def next_offline_level(chat_id):
@@ -85,6 +95,7 @@ def next_offline_level(chat_id):
              .where(Team.chat_id == chat_id))
     query.execute()
 
+
 @exception_guard
 def is_finished(chat_id):
     if MODE == ONLINE:
@@ -92,6 +103,7 @@ def is_finished(chat_id):
     else:
         game_over = OFFLINE_GAME_OVER
     return get_team(chat_id).status == game_over
+
 
 @exception_guard
 def is_running(chat_id):
@@ -101,6 +113,7 @@ def is_running(chat_id):
         run = OFFLINE_GAME_ON
     return get_team(chat_id).status == run
 
+
 @exception_guard
 def on_game_start(chat_id):
     query = (Team
@@ -108,12 +121,14 @@ def on_game_start(chat_id):
              .where(Team.chat_id == chat_id))
     query.execute()
 
+
 @exception_guard
 def off_game_start(chat_id):
     query = (Team
              .update({Team.off_point: 1, Team.status: OFFLINE_GAME_ON})
              .where(Team.chat_id == chat_id))
     query.execute()
+
 
 @exception_guard
 def set_wrong(chat_id):
@@ -133,6 +148,7 @@ def set_wrong(chat_id):
         query.execute()
         return ATTEMPT_WAS_NOT_LAST
 
+
 @exception_guard
 def attempt_was_last(chat_id):
     team = get_team(chat_id)
@@ -142,19 +158,23 @@ def attempt_was_last(chat_id):
         attempts = OFFLINE_POINT_ATTEMPTS
     return team.attempt_num + 1 == attempts
 
+
 @exception_guard
 def set_cur_time(chat_id):
     query = (Team.update({Team.cur_start_time: datetime.now()}).where(Team.chat_id == chat_id))
     query.execute()
+
 
 @exception_guard
 def change_bot_reaction(chat_id, mode):
     query = (Team.update({Team.bot_reaction: mode }).where(Team.chat_id == chat_id))
     query.execute()
 
+
 @exception_guard
 def is_bot_speaking(chat_id):
     return get_team(chat_id).bot_reaction
+
 
 @exception_guard
 def delete_team(chat_id):

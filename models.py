@@ -10,6 +10,7 @@ class BaseModel(Model):
         database = database
         order_by = ('created_at',)
 
+
 class OnPoint(BaseModel):
     """
     Online Point - Point for online quest mode.
@@ -28,6 +29,7 @@ class OnPoint(BaseModel):
     attempts = IntegerField()
     right_answer = TextField()
     artifacts = IntegerField()
+
 
 class OffPoint(BaseModel):
     """
@@ -53,6 +55,7 @@ class OffPoint(BaseModel):
     fast = IntegerField()
     middle = IntegerField()
     slow = IntegerField()
+
 
 class Team(BaseModel):
     """
@@ -87,6 +90,7 @@ class Team(BaseModel):
     bot_reaction = BooleanField(default=True)
     responding = BooleanField(default=False)
 
+
 class OffReaction(BaseModel):
     """
     Message as reaction on some user actions. For offline mode.
@@ -102,6 +106,7 @@ class OffReaction(BaseModel):
     point_num = IntegerField()
     order_num = IntegerField()
 
+
 class OnReaction(BaseModel):
     """
     Message as reaction on some user actions. For online mode.
@@ -116,6 +121,7 @@ class OnReaction(BaseModel):
     text = TextField()
     point_num = IntegerField()
     order_num = IntegerField()
+
 
 class File(BaseModel):
     """

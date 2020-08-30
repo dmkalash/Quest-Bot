@@ -9,6 +9,7 @@ from msg.messages import MSG_OFFLINE_END
 from utils import get_msg
 from bot import bot
 
+
 def check_time():
     for team in view.team.get_all_teams():
         if not team.responding:

@@ -3,6 +3,7 @@ import pandas as pd
 from exception_guard import exception_guard
 from config import *
 
+
 class FillFactory:
     def __init__(self):
         self._fillers = {

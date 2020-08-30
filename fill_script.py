@@ -3,6 +3,7 @@ from utils import create_tables
 from fill import FillFactory
 from config import *
 
+
 def fill_script():
     print(create_tables())
     factory = FillFactory()

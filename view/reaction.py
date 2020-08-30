@@ -5,6 +5,7 @@ from config import *
 from models import OnReaction, OffReaction
 from exception_guard import exception_guard
 
+
 @exception_guard
 def add_reaction(**kwargs):
     if kwargs['type'] == 'ON':
@@ -13,6 +14,7 @@ def add_reaction(**kwargs):
         point_class = OffReaction
     reaction = point_class.create(**kwargs)
     return reaction
+
 
 @exception_guard
 def get_reaction_with_point(point_num, order_num):
@@ -23,11 +25,11 @@ def get_reaction_with_point(point_num, order_num):
     reaction = reaction_class.get((reaction_class.point_num == point_num) & (reaction_class.order_num == order_num))
     return reaction
 
+
 @exception_guard
 def get_answer_reaction(chat_id, result):
     return get_reaction_with_point(view.point.cur_point(chat_id).id, result)
 
-###
 
 @exception_guard
 def get_reaction_with_id(id):
@@ -37,6 +39,7 @@ def get_reaction_with_id(id):
         reaction_class = OffReaction
     reaction = reaction_class.select().where(reaction_class.id == id).get()
     return reaction
+
 
 @exception_guard
 def delete_reaction(id):

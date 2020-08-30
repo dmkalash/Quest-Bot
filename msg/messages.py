@@ -2,6 +2,7 @@
 
 from config import *
 
+
 MSG_HELLO = 'hello'
 MSG_ONLINE_START = 'online_start'
 MSG_ONLINE_END = 'online_end'
@@ -59,8 +60,7 @@ help_off = """
 
 online_start = """
 Список всех команд доступен по команде /help. Посмотри их. Когда ты готов ответить на вопрос, отправь команду
-/try ТВОЙ_ОТВЕТ\
-
+/try ТВОЙ_ОТВЕТ
 """
 
 online_end = """
@@ -83,43 +83,81 @@ sos = """
 @dmkalash
 """
 
-msg_online_mode = """Для данного этапа команда недоступна"""
+msg_online_mode = """
+Для данного этапа команда недоступна
+"""
 
-msg_offline_mode = """Для данного этапа команда недоступна"""
+msg_offline_mode = """
+Для данного этапа команда недоступна
+"""
 
-msg_finished = """Квест окончен"""
+msg_finished = """
+Квест окончен
+"""
 
-msg_sudo = """Команда недоступна"""
+msg_sudo = """
+Команда недоступна
+"""
 
-msg_not_running = """Не время для ответов"""
+msg_not_running = """
+Не время для ответов
+"""
 
-msg_not_off_running = """Для начала введите /kill"""
+msg_not_off_running = """
+Для начала введите /kill
+"""
 
-msg_need_code = """Введите код"""
+msg_need_code = """
+Введите код
+"""
 
-msg_wrong_code = """Неверный код КП"""
+msg_wrong_code = """
+Неверный код КП
+"""
 
-msg_wrong_point = """Не та КП"""
+msg_wrong_point = """
+Не та КП
+"""
 
-msg_need_check_in = """Для начала введите /in"""
+msg_need_check_in = """
+Для начала введите /in
+"""
 
-msg_already_checked_in = """Уже введен /in"""
+msg_already_checked_in = """
+Уже введен /in
+"""
 
-msg_wrong_section = """Не на тот круг занесло"""
+msg_wrong_section = """
+Не на тот круг занесло
+"""
 
-msg_team = """Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: {}"""
+msg_team = """
+Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: {}
+"""
 
-msg_start_speak = """Соскучились по мне?"""
+msg_start_speak = """
+Соскучились по мне?
+"""
 
-msg_stop_speak =  """Окей, молчу"""
+msg_stop_speak =  """
+Окей, молчу
+"""
 
-msg_plain_text = """И не говори"""
+msg_plain_text = """
+И не говори
+"""
 
-msg_reg_info = """/reg TeamName PartCount Section"""
+msg_reg_info = """
+/reg TeamName PartCount Section
+"""
 
-msg_success = """Success"""
+msg_success = """
+Success
+"""
 
-msg_error = """Error"""
+msg_error = """
+Error
+"""
 
 messages = {MSG_HELLO: hello,
             MSG_HELP_ON: help_on,

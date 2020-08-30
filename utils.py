@@ -11,11 +11,13 @@ from db_init import database
 def get_msg(alias):
     return messages.messages.get(alias)
 
+
 @exception_guard
 def create_tables():
     with database:
         database.create_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
         return SUCCESS
+
 
 @exception_guard
 def drop_tables():
@@ -23,9 +25,11 @@ def drop_tables():
         database.drop_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
         return SUCCESS
 
+
 @exception_guard
 def check_access(user_id):
     return user_id in ADMIN_USER_IDS
+
 
 @exception_guard
 def add_file_id_to_txt(file_id):
