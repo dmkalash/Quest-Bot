@@ -2,10 +2,12 @@
 
 import view
 from bot import bot
-from config import MSG_HELLO, MSG_ONLINE_START, MSG_NOT_RUNNING, MSG_OFFLINE_START, MODE, ONLINE, MSG_HELP_ON, \
-    MSG_HELP_OFF, RIGHT_ANSWER, MSG_ONLINE_END, WRONG_ANSWER, LAST_WRONG_ANSWER, ATTEMPT_WAS_LAST, MSG_SOS, ERROR, \
-    MSG_NOT_OFF_RUNNING, ALREADY_CHECKED_IN, MSG_NEED_CODE, MSG_WRONG_CODE, MSG_WRONG_POINT, MSG_WRONG_SECTION, \
-    MSG_NEED_CHECK_IN, MSG_OFFLINE_END, PHOTO_TYPE, DOCUMENT_TYPE, AUDIO_TYPE
+from config import MODE, ONLINE, RIGHT_ANSWER, WRONG_ANSWER, LAST_WRONG_ANSWER, ATTEMPT_WAS_LAST, ERROR, \
+    PHOTO_TYPE, DOCUMENT_TYPE, AUDIO_TYPE
+from msg.messages import MSG_HELLO, MSG_ONLINE_START, MSG_ONLINE_END, MSG_OFFLINE_START, MSG_OFFLINE_END, MSG_HELP_ON, \
+    MSG_HELP_OFF, MSG_SOS, MSG_NOT_RUNNING, MSG_NOT_OFF_RUNNING, MSG_NEED_CODE, MSG_WRONG_CODE, MSG_WRONG_POINT, \
+    MSG_NEED_CHECK_IN, MSG_ALREADY_CHECKED_IN, MSG_WRONG_SECTION, MSG_TEAM, MSG_START_SPEAK, MSG_STOP_SPEAK, \
+    MSG_PLAIN_TEXT
 from exception_guard import exception_guard
 from handler_settings import online_mode, not_finished, offline_mode
 from utils import get_msg
@@ -90,8 +92,11 @@ def team(message):
     if team == ERROR:
         bot.send_message(message.chat.id, ERROR)
     else:
-        msg = "Название: {}\nКоличество участников: {}\nИнтеллект: {}\nСтатус: {}\nКруг: {}".format(
-            team.name, team.participants, team.on_score + team.off_score, team.status, team.section)
+        msg = MSG_TEAM.format(team.name,
+                              team.participants,
+                              team.on_score + team.off_score,
+                              team.status,
+                              team.section)
         bot.send_message(message.chat.id, msg)
 
 
@@ -114,7 +119,7 @@ def check_in(message):
     if not view.team.is_running(message.chat.id):
         bot.send_message(message.chat.id, get_msg(MSG_NOT_OFF_RUNNING))
     elif view.team.is_team_responding(message.chat.id):
-        bot.send_message(message.chat.id, get_msg(ALREADY_CHECKED_IN))
+        bot.send_message(message.chat.id, get_msg(MSG_ALREADY_CHECKED_IN))
     else:
         try:
             code = message.text.split()[1]
@@ -163,14 +168,14 @@ def check_out(message):
 @exception_guard
 def speak(message):
     view.team.change_bot_reaction(message.chat.id, True)
-    bot.send_message(message.chat.id, 'Соскучились по мне?')
+    bot.send_message(message.chat.id, MSG_START_SPEAK)
 
 
 @bot.message_handler(commands=["shut"])
 @exception_guard
 def shut(message):
     view.team.change_bot_reaction(message.chat.id, False)
-    bot.send_message(message.chat.id, 'Окей, молчу')
+    bot.send_message(message.chat.id, MSG_STOP_SPEAK)
 
 
 @bot.message_handler(content_types=["text"])
@@ -184,15 +189,14 @@ def plain_text(message):
 
 @exception_guard
 def online_plain_text(message):
-    # TODO: сделать /next для "пояснительных" КП. Их признак - score == 0. Ничего не выводить, просто след уровень и таск
     if view.team.is_bot_speaking(message.chat.id):
-        bot.send_message(message.chat.id, 'И не говори')
+        bot.send_message(message.chat.id, MSG_PLAIN_TEXT)
 
 
 @exception_guard
 def offline_plain_text(message):
     if view.team.is_bot_speaking(message.chat.id):
-        bot.send_message(message.chat.id, 'И не говори')
+        bot.send_message(message.chat.id, MSG_PLAIN_TEXT)
 
 
 @exception_guard
@@ -207,4 +211,4 @@ def send_task(chat_id):
         elif file.file_type == AUDIO_TYPE:
             bot.send_audio(chat_id, file.file_id)
         else:
-            print('send_task problem', point, file.file_id, file.file_type)
+            print('send_task problem: ', point, file.file_id, file.file_type)

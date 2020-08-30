@@ -5,11 +5,12 @@ from threading import Timer
 
 import view
 from config import *
+from msg.messages import MSG_OFFLINE_END
 from utils import get_msg
 from bot import bot
 
 def check_time():
-    for team in view.team.get_all_teams(): # TODO: data устроена по-другому, исправить
+    for team in view.team.get_all_teams():
         if not team.responding:
             continue
         start_time = team.cur_start_time

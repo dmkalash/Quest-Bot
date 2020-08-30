@@ -2,7 +2,8 @@
 
 import view
 from bot import bot
-from config import SUCCESS, MSG_PINNED, ERROR
+from config import SUCCESS, ERROR
+from msg.messages import MSG_PINNED, MSG_REG_INFO, MSG_SUCCESS, MSG_ERROR
 from exception_guard import exception_guard
 from fill_script import fill_script
 from handler_settings import sudo, online_mode, offline_mode
@@ -41,12 +42,12 @@ def reg(message):
     try:
         name, part_count, section = message.text.split()[1:]
     except:
-        bot.send_message(message.chat.id, "/reg TeamName PartCount Section")
+        bot.send_message(message.chat.id, MSG_REG_INFO)
     else:
         if view.team.add_team(message.chat.id, name, int(part_count), int(section)) != ERROR:
-            bot.send_message(message.chat.id, 'OK')
+            bot.send_message(message.chat.id, MSG_SUCCESS)
         else:
-            bot.send_message(message.chat.id, 'ERROR')
+            bot.send_message(message.chat.id, MSG_ERROR)
 
 
 @bot.message_handler(commands=["set_section"])
