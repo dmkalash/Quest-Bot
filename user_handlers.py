@@ -52,11 +52,11 @@ def help(message):
         bot.send_message(message.chat.id, get_msg(MSG_HELP_OFF))
 
 
-@bot.message_handler(commands=["answer"])
+@bot.message_handler(commands=["try"])
 @exception_guard
 @online_mode
 @not_finished
-def answer(message):
+def try_handler(message):
     if view.team.is_running(message.chat.id):
         text = message.text.split()[1]
         point = view.point.cur_point(message.chat.id)
@@ -111,7 +111,7 @@ def task(message):
         send_task(message.chat.id)
 
 
-@bot.message_handler(commands=["checkin"])
+@bot.message_handler(commands=["in"])
 @exception_guard
 @offline_mode
 @not_finished
@@ -139,7 +139,7 @@ def check_in(message):
                 view.team.set_cur_time(message.chat.id)
 
 
-@bot.message_handler(commands=["checkout"])
+@bot.message_handler(commands=["out"])
 @exception_guard
 @offline_mode
 @not_finished
