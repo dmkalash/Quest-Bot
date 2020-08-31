@@ -5,7 +5,7 @@ from threading import Timer
 
 import view
 from config import *
-from msg.messages import MSG_OFFLINE_END, get_msg
+from data.messages import MSG_OFFLINE_END, get_msg
 from bot import bot
 
 
