@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from db_manip import create_tables
+from db_utils.db_manip import create_tables
 from fill import FillFactory
 from config import *
 

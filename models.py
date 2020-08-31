@@ -2,7 +2,7 @@
 
 from peewee import *
 from config import *
-from db_init import database
+from db_utils.db_init import database
 
 
 class BaseModel(Model):

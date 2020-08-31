@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from db_init import database
+from db_utils.db_init import database
 from bot import bot
 from threading import Timer
 from config import MODE, OFFLINE, CHECKER_TIME

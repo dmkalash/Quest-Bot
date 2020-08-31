@@ -7,7 +7,7 @@ from data.messages import MSG_PINNED, MSG_REG_INFO, MSG_SUCCESS, MSG_ERROR, MSG_
 from exception_guard import exception_guard
 from fill_script import fill_script
 from handler_settings import sudo, online_mode, offline_mode
-from db_manip import drop_tables
+from db_utils.db_manip import drop_tables
 
 
 @bot.message_handler(commands=["util"])

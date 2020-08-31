@@ -1,4 +1,4 @@
-from db_init import database
+from db_utils.db_init import database
 from exception_guard import exception_guard
 from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
 from data.messages import get_msg, MSG_SUCCESS
