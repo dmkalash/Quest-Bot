@@ -7,10 +7,9 @@ from config import MODE, ONLINE, RIGHT_ANSWER, WRONG_ANSWER, LAST_WRONG_ANSWER, 
 from msg.messages import MSG_HELLO, MSG_ONLINE_START, MSG_ONLINE_END, MSG_OFFLINE_START, MSG_OFFLINE_END, MSG_HELP_ON, \
     MSG_HELP_OFF, MSG_SOS, MSG_NOT_RUNNING, MSG_NOT_OFF_RUNNING, MSG_NEED_CODE, MSG_WRONG_CODE, MSG_WRONG_POINT, \
     MSG_NEED_CHECK_IN, MSG_ALREADY_CHECKED_IN, MSG_WRONG_SECTION, MSG_TEAM, MSG_START_SPEAK, MSG_STOP_SPEAK, \
-    MSG_PLAIN_TEXT
+    MSG_PLAIN_TEXT, get_msg
 from exception_guard import exception_guard
 from handler_settings import online_mode, not_finished, offline_mode
-from utils import get_msg
 
 
 @bot.message_handler(commands=["hello"])

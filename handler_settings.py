@@ -3,8 +3,8 @@
 import view
 from bot import bot
 from config import MODE, ONLINE, OFFLINE
-from msg.messages import MSG_ONLINE_MODE, MSG_OFFLINE_MODE, MSG_FINISHED, MSG_SUDO
-from utils import get_msg, check_access
+from msg.messages import MSG_ONLINE_MODE, MSG_OFFLINE_MODE, MSG_FINISHED, MSG_SUDO, get_msg
+from utils import check_access
 
 
 def online_mode(func):

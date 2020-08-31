@@ -2,15 +2,9 @@
 
 from exception_guard import exception_guard
 from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
-from msg.messages import MSG_SUCCESS
-from msg import messages
+from msg.messages import MSG_SUCCESS, get_msg
 from config import *
 from db_init import database
-
-
-@exception_guard
-def get_msg(alias):
-    return messages.messages.get(alias)
 
 
 @exception_guard

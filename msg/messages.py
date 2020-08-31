@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from config import *
-
+from exception_guard import exception_guard
 
 MSG_HELLO = 'hello'
 MSG_ONLINE_START = 'online_start'
@@ -206,3 +205,8 @@ messages = {MSG_HELLO: hello,
             MSG_ERROR: msg_error,
             MSG_UTIL: util,
             }
+
+
+@exception_guard
+def get_msg(alias):
+    return messages.get(alias)

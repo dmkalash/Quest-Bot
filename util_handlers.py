@@ -3,11 +3,11 @@
 import view
 from bot import bot
 from config import SUCCESS, ERROR
-from msg.messages import MSG_PINNED, MSG_REG_INFO, MSG_SUCCESS, MSG_ERROR, MSG_UTIL
+from msg.messages import MSG_PINNED, MSG_REG_INFO, MSG_SUCCESS, MSG_ERROR, MSG_UTIL, get_msg
 from exception_guard import exception_guard
 from fill_script import fill_script
 from handler_settings import sudo, online_mode, offline_mode
-from utils import get_msg, drop_tables
+from utils import drop_tables
 
 
 @bot.message_handler(commands=["util"])

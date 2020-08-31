@@ -1,5 +1,4 @@
-from utils import get_msg
-from msg.messages import MSG_ERROR
+# -*- coding: utf-8 -*-
 
 
 def exception_guard(func):
@@ -8,5 +7,5 @@ def exception_guard(func):
             return func(*args, **kwargs)
         except Exception as error:
             print('EXCEPTION_GUARD:', str(error), args, kwargs)
-            return get_msg(MSG_ERROR)
+            return 'Error'
     return wrapper
