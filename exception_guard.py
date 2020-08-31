@@ -1,11 +1,12 @@
-from config import ERROR
+from utils import get_msg
+from msg.messages import MSG_ERROR
 
 
-def exception_guard(func): # TODO: выводить в лс с админами из config эти исключения
+def exception_guard(func):
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
         except Exception as error:
             print('EXCEPTION_GUARD:', str(error), args, kwargs)
-            return ERROR
+            return get_msg(MSG_ERROR)
     return wrapper

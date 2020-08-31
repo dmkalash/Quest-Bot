@@ -77,6 +77,5 @@ LAST_POINT_NAME = 'LastPoint'
 
 
 # Utils success
-FAILURE = 'FAILURE'
-SUCCESS = 'SUCCESS'
-ERROR = 'ERROR'
+SUCCESS = 'Success'
+ERROR = 'Error'

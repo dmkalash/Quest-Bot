@@ -2,6 +2,7 @@
 
 from exception_guard import exception_guard
 from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
+from msg.messages import MSG_SUCCESS
 from msg import messages
 from config import *
 from db_init import database
@@ -16,14 +17,14 @@ def get_msg(alias):
 def create_tables():
     with database:
         database.create_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
-        return SUCCESS
+        return get_msg(MSG_SUCCESS)
 
 
 @exception_guard
 def drop_tables():
     with database:
         database.drop_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
-        return SUCCESS
+        return get_msg(MSG_SUCCESS)
 
 
 @exception_guard
@@ -36,4 +37,4 @@ def add_file_id_to_txt(file_id):
     fout = open(FILE_ID_PATH, 'a')
     print(file_id, file=fout)
     fout.close()
-    return SUCCESS
+    return get_msg(MSG_SUCCESS)

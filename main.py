@@ -10,10 +10,8 @@ import user_handlers
 
 
 # TODO: решить, делать ли тесты
-# TODO: сделать другой критерий окончания квеста, а не числа из конфига
 # TODO: utils расформировать
 # TODO: гайд перееписать
-# TODO: два разных success исправить
 
 if __name__ == "__main__":
     logger = logging.getLogger('vmquest')
