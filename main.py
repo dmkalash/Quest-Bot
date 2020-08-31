@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# CREATED by Dmitry Kalashnikov, 2020.
+# https://github.com/dmkalash
+# https://vk.com/dmkalash
+
 
 from db_utils.db_init import database
 from bot import bot
@@ -7,8 +11,7 @@ from config import MODE, OFFLINE, CHECKER_TIME
 import logging
 from handlers import util_handlers, user_handlers
 
-# TODO: решить, делать ли тесты
-# TODO: гайд перееписать
+# TODO: гайд переписать
 
 if __name__ == "__main__":
     logger = logging.getLogger('vmquest')
