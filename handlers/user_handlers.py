@@ -9,7 +9,7 @@ from data.messages import MSG_HELLO, MSG_ONLINE_START, MSG_ONLINE_END, MSG_OFFLI
     MSG_NEED_CHECK_IN, MSG_ALREADY_CHECKED_IN, MSG_WRONG_SECTION, MSG_TEAM, MSG_START_SPEAK, MSG_STOP_SPEAK, \
     MSG_PLAIN_TEXT, get_msg
 from exception_guard import exception_guard
-from handler_settings import online_mode, not_finished, offline_mode
+from handlers.handler_settings import online_mode, not_finished, offline_mode
 
 
 @bot.message_handler(commands=["hello"])

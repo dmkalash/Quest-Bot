@@ -6,7 +6,7 @@ from config import SUCCESS, ERROR
 from data.messages import MSG_PINNED, MSG_REG_INFO, MSG_SUCCESS, MSG_ERROR, MSG_UTIL, get_msg
 from exception_guard import exception_guard
 from db_utils.fill_script import fill_script
-from handler_settings import sudo, online_mode, offline_mode
+from handlers.handler_settings import sudo, online_mode, offline_mode
 from db_utils.db_manip import drop_tables
 
 

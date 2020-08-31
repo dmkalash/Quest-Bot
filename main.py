@@ -5,9 +5,7 @@ from bot import bot
 from threading import Timer
 from config import MODE, OFFLINE, CHECKER_TIME
 import logging
-import util_handlers
-import user_handlers
-
+from handlers import util_handlers, user_handlers
 
 # TODO: решить, делать ли тесты
 # TODO: гайд перееписать
