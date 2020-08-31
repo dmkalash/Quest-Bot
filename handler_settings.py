@@ -2,9 +2,8 @@
 
 import view
 from bot import bot
-from config import MODE, ONLINE, OFFLINE
+from config import MODE, ONLINE, OFFLINE, ADMIN_USER_IDS
 from msg.messages import MSG_ONLINE_MODE, MSG_OFFLINE_MODE, MSG_FINISHED, MSG_SUDO, get_msg
-from utils import check_access
 
 
 def online_mode(func):
@@ -36,7 +35,7 @@ def not_finished(func):
 
 def sudo(func):
     def wrapper(message):
-        if check_access(message.from_user.id):
+        if message.from_user.id in ADMIN_USER_IDS:
             func(message)
         else:
             bot.send_message(message.chat.id, get_msg(MSG_SUDO))

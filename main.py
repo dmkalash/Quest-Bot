@@ -10,7 +10,6 @@ import user_handlers
 
 
 # TODO: решить, делать ли тесты
-# TODO: utils расформировать
 # TODO: гайд перееписать
 
 if __name__ == "__main__":

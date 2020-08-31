@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-
+from db_init import database
 from exception_guard import exception_guard
 from models import Team, OnPoint, OffPoint, OnReaction, OffReaction, File
-from msg.messages import MSG_SUCCESS, get_msg
-from config import *
-from db_init import database
+from msg.messages import get_msg, MSG_SUCCESS
 
 
 @exception_guard
@@ -19,16 +16,3 @@ def drop_tables():
     with database:
         database.drop_tables([Team, OnPoint, OffPoint, OnReaction, OffReaction, File])
         return get_msg(MSG_SUCCESS)
-
-
-@exception_guard
-def check_access(user_id):
-    return user_id in ADMIN_USER_IDS
-
-
-@exception_guard
-def add_file_id_to_txt(file_id):
-    fout = open(FILE_ID_PATH, 'a')
-    print(file_id, file=fout)
-    fout.close()
-    return get_msg(MSG_SUCCESS)
