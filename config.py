@@ -72,9 +72,8 @@ RUN_ATTEMPT = 0
 OFFLINE_POINT_ATTEMPTS = 3
 
 
-# Last points' numbers
-LAST_ON_POINT_NUM = 10
-LAST_OFF_POINT_NUM = 6
+# Last point name
+LAST_POINT_NAME = 'LastPoint'
 
 
 # Utils success

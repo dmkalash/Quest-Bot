@@ -17,7 +17,5 @@ id;section;name;start_code;finish_code;task;score;fast;middle;slow
 8;2;Кубик рубика;getting;Brin;Введите p8, затем отправьте p6end;12;1;2;3
 9;1;404 Not Found - найти код по одному из сайтов;my;Kaspersky;Введите p9, затем отправьте p6end;12;1;2;3
 9;2;404 Not Found - найти код по одному из сайтов;AI;Roshal;Введите p9, затем отправьте p6end;12;1;2;3
-10;1;Физика;appearance;Tanenbaum;Введите p10, затем отправьте p6end;12;1;2;3
-10;2;Физика;coming;Stroustrup;Введите p10, затем отправьте p6end;12;1;2;3
-11;1;Конец;p11s1;p11s1end;Конец;12;10;20;30
-11;2;Конец;p11s2;p11s2end;Конец;12;20;20;30
+10;1;LastPoint;appearance;Tanenbaum;Введите p10, затем отправьте p6end;12;1;2;3
+10;2;LastPoint;coming;Stroustrup;Введите p10, затем отправьте p6end;12;1;2;3

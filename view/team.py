@@ -65,7 +65,7 @@ def next_online_level(chat_id, skipped=False):
     if not skipped:
         score += max(point.score - point.score / point.attempts * team.attempt_num, 0)
     new_point_num = point.id + 1
-    if new_point_num == LAST_ON_POINT_NUM:
+    if point.name == LAST_POINT_NAME:
         status = ONLINE_GAME_OVER
     else:
         status = team.status
@@ -84,7 +84,7 @@ def next_offline_level(chat_id):
     point = view.point.get_point(team.off_point, team.section)
     score = team.off_score + max(point.score - point.score / OFFLINE_POINT_ATTEMPTS * team.attempt_num, 0)
     new_point_num = point.id + 1
-    if new_point_num == LAST_OFF_POINT_NUM:
+    if point.name == LAST_POINT_NAME:
         status = OFFLINE_GAME_OVER
     else:
         status = team.status

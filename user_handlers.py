@@ -89,7 +89,12 @@ def try_handler(message):
             last_reaction = view.reaction.get_answer_reaction(message.chat.id, LAST_WRONG_ANSWER)
             if view.team.set_wrong(message.chat.id) == ATTEMPT_WAS_LAST:
                 bot.send_message(message.chat.id, last_reaction.text)
-            send_task(message.chat.id)
+                if view.team.is_finished(message.chat.id):
+                    bot.send_message(message.chat.id, get_msg(MSG_ONLINE_END))
+                else:
+                    send_task(message.chat.id)
+            else:
+                send_task(message.chat.id)
     else:
         bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
 
