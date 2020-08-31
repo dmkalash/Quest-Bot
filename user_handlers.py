@@ -34,6 +34,21 @@ def enter(message):
         bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
 
 
+@bot.message_handler(commands=["skip"])
+@exception_guard
+@online_mode
+@not_finished
+def skip(message):
+    if not view.team.is_running(message.chat.id):
+        bot.send_message(message.chat.id, get_msg(MSG_NOT_RUNNING))
+    else:
+        view.team.next_online_level(message.chat.id, True)
+        if view.team.is_finished(message.chat.id):
+            bot.send_message(message.chat.id, get_msg(MSG_ONLINE_END))
+        else:
+            send_task(message.chat.id)
+
+
 @bot.message_handler(commands=["kill"])
 @exception_guard
 @offline_mode
@@ -92,11 +107,11 @@ def team(message):
     if team == ERROR:
         bot.send_message(message.chat.id, ERROR)
     else:
-        msg = MSG_TEAM.format(team.name,
-                              team.participants,
-                              team.on_score + team.off_score,
-                              team.status,
-                              team.section)
+        msg = get_msg(MSG_TEAM).format(team.name,
+                                        team.participants,
+                                        team.on_score + team.off_score,
+                                        team.status,
+                                        team.section)
         bot.send_message(message.chat.id, msg)
 
 
@@ -168,14 +183,14 @@ def check_out(message):
 @exception_guard
 def speak(message):
     view.team.change_bot_reaction(message.chat.id, True)
-    bot.send_message(message.chat.id, MSG_START_SPEAK)
+    bot.send_message(message.chat.id, get_msg(MSG_START_SPEAK))
 
 
 @bot.message_handler(commands=["shut"])
 @exception_guard
 def shut(message):
     view.team.change_bot_reaction(message.chat.id, False)
-    bot.send_message(message.chat.id, MSG_STOP_SPEAK)
+    bot.send_message(message.chat.id, get_msg(MSG_STOP_SPEAK))
 
 
 @bot.message_handler(content_types=["text"])
@@ -190,13 +205,13 @@ def plain_text(message):
 @exception_guard
 def online_plain_text(message):
     if view.team.is_bot_speaking(message.chat.id):
-        bot.send_message(message.chat.id, MSG_PLAIN_TEXT)
+        bot.send_message(message.chat.id, get_msg(MSG_PLAIN_TEXT))
 
 
 @exception_guard
 def offline_plain_text(message):
     if view.team.is_bot_speaking(message.chat.id):
-        bot.send_message(message.chat.id, MSG_PLAIN_TEXT)
+        bot.send_message(message.chat.id, get_msg(MSG_PLAIN_TEXT))
 
 
 @exception_guard

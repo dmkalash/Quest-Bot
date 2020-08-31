@@ -3,17 +3,15 @@
 from db_init import database
 from bot import bot
 from threading import Timer
-import config
+from config import MODE, OFFLINE, CHECKER_TIME
 import logging
 import util_handlers
 import user_handlers
 
 
-# TODO: сделать листинг команд для разраба отдельной командой
 # TODO: решить, делать ли тесты
-# TODO: нормальные отступы
-# TODO: сделать /next для "пояснительных" КП. Их признак - score == 0. Ничего не выводить, просто след уровень и таск
-# TODO: сделать другой критерий окончания квеста, а не числа их конфига
+# TODO: сделать другой критерий окончания квеста, а не числа из конфига
+# TODO: utils расформировать
 # TODO: гайд перееписать
 
 if __name__ == "__main__":
@@ -24,7 +22,7 @@ if __name__ == "__main__":
     database.connect()
 
     from timer import check_time
-    if config.MODE == config.OFFLINE:
-        t = Timer(config.CHECKER_TIME, check_time)
+    if MODE == OFFLINE:
+        t = Timer(CHECKER_TIME, check_time)
         t.start()
     bot.infinity_polling()

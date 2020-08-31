@@ -1,5 +1,5 @@
 import telebot
-from token import token
+from bot_token import token
 
 
 bot = telebot.TeleBot(token)

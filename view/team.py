@@ -58,10 +58,12 @@ def get_section(chat_id):
 
 
 @exception_guard
-def next_online_level(chat_id):
+def next_online_level(chat_id, skipped=False):
     team = get_team(chat_id)
     point = view.point.get_point(team.on_point)
-    score = team.on_score + max(point.score - point.score / point.attempts * team.attempt_num, 0)
+    score = team.on_score
+    if not skipped:
+        score += max(point.score - point.score / point.attempts * team.attempt_num, 0)
     new_point_num = point.id + 1
     if new_point_num == LAST_ON_POINT_NUM:
         status = ONLINE_GAME_OVER
