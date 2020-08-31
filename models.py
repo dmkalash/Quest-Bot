@@ -48,8 +48,8 @@ class OffPoint(BaseModel):
     id = IntegerField()
     section = IntegerField()
     name = TextField()
-    start_code = TextField() # TODO сделать unique=True
-    finish_code = TextField() # TODO сделать unique=True
+    start_code = TextField(unique=True)
+    finish_code = TextField(unique=True)
     task = TextField()
     score = IntegerField()
     fast = IntegerField()

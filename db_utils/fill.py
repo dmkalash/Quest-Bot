@@ -21,4 +21,4 @@ class FillFactory:
             kwargs = {key: row[key] for key in row.keys()}
             self._fillers[format](**kwargs)
             print(index, 'OK')
-        return SUCCESS  # TODO: выводить OK и SUCCESS только если правда все успешно
+        return SUCCESS

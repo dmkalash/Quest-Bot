@@ -11,7 +11,6 @@ from config import MODE, OFFLINE, CHECKER_TIME
 import logging
 from handlers import util_handlers, user_handlers
 
-# TODO: гайд переписать
 
 if __name__ == "__main__":
     logger = logging.getLogger('vmquest')
